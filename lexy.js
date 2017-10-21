@@ -1,3 +1,4 @@
+var Botkit = require('botkit');
 /** Imports that are required from the .env file */
 var watsonUser = require('.env').WATSON_USER_NAME;
 var watsonPassword = require('.env').WATSON_PASSWORD;
@@ -25,4 +26,10 @@ slackController.middleware.receive.use(watsonMiddleware.receive);
 slackBot.startRTM();
 
 // Making the bot reply to messages using watson.
-
+slackController.hears(['.*'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
+    if (message.watsonError) {
+        bot.reply(message, "I'm sorry but for technical reasons I cannot respond to your message");
+    } else {
+        bot.reply(message, message.watsonData.output.text.join('\n'));
+    }
+})
