@@ -19,7 +19,7 @@ var watsonMiddleware = require('botkit-middleware-watson')({
     workspace_id: watsonWorkspaceId,
     version_date: '2017-05-26',
     minimum_confidence: 0.50
-})
+});
 
 // Telling the bot what to do with the incoming messages
 slackController.middleware.receive.use(watsonMiddleware.receive);
@@ -32,4 +32,4 @@ slackController.hears(['.*'], ['direct_message', 'direct_mention', 'mention'], f
     } else {
         bot.reply(message, message.watsonData.output.text.join('\n'));
     }
-})
+});
