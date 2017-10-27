@@ -2,6 +2,7 @@ require('dotenv').load();
 // Setting up the server
 var express = require('express');
 var bodyParser = require('body-parser');
+var verify = require('./security');
 var app = express().use(bodyParser.json());
 // Setting the port
 var port = process.env.PORT || 5000;
