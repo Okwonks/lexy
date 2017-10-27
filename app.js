@@ -14,7 +14,7 @@ module.exports = function(app) {
         var Facebook = require('./facebook-bot');
         Facebook.controller.middleware.receive.use(middleware.receive);
         Facebook.controller.createWebhookEndpoints(app, Facebook.bot);
-        console.log('bot is live');
+        console.log('Facebook bot is live');
     }
     if (process.env.USE_SLACK) {
         var Slack = require('./slack-bot');
